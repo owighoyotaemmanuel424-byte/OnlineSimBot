@@ -3,6 +3,7 @@
 
 # Standard library imports
 from typing import ClassVar, NoReturn, Any
+import os
 
 
 class User:
@@ -45,6 +46,8 @@ def get_token() -> str:
     Returns:
         token (str): Bot's Token
     """
-    # Open and read token and return it
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    if token:
+        return token.strip()
     with open("src/token.txt") as file:
         return file.read().strip()
